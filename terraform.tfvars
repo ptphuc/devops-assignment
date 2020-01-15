@@ -1,8 +1,11 @@
+#AWS 
 region      = "ap-southeast-1"
+
+#Project identifier
 name        = "devops"
 environment = "test"
 
-#VPC
+#VPC variables
 vpc_cidr_block       = "10.0.0.0/16"
 nat_cidr_blocks      = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
 rds_cidr_blocks      = ["10.0.20.0/24", "10.0.21.0/24", "10.0.22.0/24"]
@@ -14,7 +17,7 @@ nat_instance_type    = "t2.micro"
 
 availability_zones = ["ap-southeast-1a", "ap-southeast-1b"]
 
-#KMS
+#KMS variables
 is_enabled     = true
 description    = "Parameter store kms master key"
 kms_alias_name = "parameter_store_key"

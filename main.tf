@@ -120,9 +120,9 @@ resource "local_file" "app_config" {
   filename = local.app_config_file
 }
 
-# This is to ensure SSH comes up before we run the local exec.
+# This is to call local exec and run ansible command.
 resource "null_resource" "provisioner" {
-  depends_on = [module.postgresl-rds, module.ec2_instance, ]
+  depends_on = [module.postgresl-rds, module.ec2_instance]
   triggers = {
     instance_public_ip = module.ec2_instance.public_ip
   }
