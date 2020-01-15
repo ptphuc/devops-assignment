@@ -1,16 +1,16 @@
 locals {
   public_key_filename = format(
-  "%s/%s%s",
-  var.ssh_public_key_path,
-  var.key_name,
-  var.public_key_extension
+    "%s/%s%s",
+    var.ssh_public_key_path,
+    var.key_name,
+    var.public_key_extension
   )
 
   private_key_filename = format(
-  "%s/%s%s",
-  var.ssh_public_key_path,
-  var.key_name,
-  var.private_key_extension
+    "%s/%s%s",
+    var.ssh_public_key_path,
+    var.key_name,
+    var.private_key_extension
   )
 }
 

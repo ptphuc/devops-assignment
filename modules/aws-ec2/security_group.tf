@@ -4,13 +4,13 @@ resource "aws_security_group" "default" {
   vpc_id      = var.vpc_id
   description = "Instance default security group (only egress access is allowed)"
   tags = {
-    Name          = "${var.name}-${var.environment}-ec2-default-sg"
-    Environment   = var.environment
+    Name        = "${var.name}-${var.environment}-ec2-default-sg"
+    Environment = var.environment
   }
-  lifecycle  {
+  lifecycle {
     create_before_destroy = true
   }
-  }
+}
 
 
 

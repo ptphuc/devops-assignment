@@ -83,14 +83,14 @@ data "aws_iam_policy_document" "ssm_permissions" {
   statement {
     effect    = "Allow"
     actions   = ["ssm:GetParameter", "ssm:GetParametersByPath", "ssm:GetParameters"]
-    resources = formatlist("arn:aws:ssm:${var.region}:${data.aws_caller_identity.default.account_id}:parameter/application/%s/*",var.ssm_paths)
+    resources = formatlist("arn:aws:ssm:${var.region}:${data.aws_caller_identity.default.account_id}:parameter/application/%s/*", var.ssm_paths)
   }
 
   ## And also without the application prefix
   statement {
     effect    = "Allow"
     actions   = ["ssm:GetParameter", "ssm:GetParametersByPath", "ssm:GetParameters"]
-    resources = formatlist("arn:aws:ssm:${var.region}:${data.aws_caller_identity.default.account_id}:parameter/%s/*",var.ssm_paths)
+    resources = formatlist("arn:aws:ssm:${var.region}:${data.aws_caller_identity.default.account_id}:parameter/%s/*", var.ssm_paths)
   }
 }
 resource "aws_iam_role" "default" {
@@ -106,9 +106,9 @@ resource "aws_iam_role_policy" "kms_permissions" {
   policy = data.aws_iam_policy_document.kms_permissions[0].json
 }
 resource "aws_iam_role_policy" "ssm_permissions" {
-  count = var.ssm_access ? 1 : 0
-  name  = "${var.name}-${var.environment}-ec2-ssm-permissions"
-  role = aws_iam_role.default[0].id
+  count  = var.ssm_access ? 1 : 0
+  name   = "${var.name}-${var.environment}-ec2-ssm-permissions"
+  role   = aws_iam_role.default[0].id
   policy = data.aws_iam_policy_document.ssm_permissions[0].json
 }
 
@@ -130,12 +130,12 @@ resource "aws_instance" "default" {
   subnet_id                   = var.subnet
   source_dest_check           = var.source_dest_check
   vpc_security_group_ids = compact(
-  concat(
-  [
-    var.create_default_security_group ? join("", aws_security_group.default.*.id) : "",
-  ],
-  var.security_groups
-  )
+    concat(
+      [
+        var.create_default_security_group ? join("", aws_security_group.default.*.id) : "",
+      ],
+      var.security_groups
+    )
   )
 
   root_block_device {
@@ -145,8 +145,8 @@ resource "aws_instance" "default" {
   }
 
   tags = {
-    Name          = "${var.name}-${var.environment}-ec2"
-    Environment   = var.environment
+    Name        = "${var.name}-${var.environment}-ec2"
+    Environment = var.environment
   }
 }
 
@@ -155,8 +155,8 @@ resource "aws_eip" "default" {
   network_interface = join("", aws_instance.default.*.primary_network_interface_id)
   vpc               = true
   tags = {
-    Name          = "${var.name}-${var.environment}-EC2-EIP"
-    Environment   = var.environment
+    Name        = "${var.name}-${var.environment}-EC2-EIP"
+    Environment = var.environment
   }
 }
 data "null_data_source" "eip" {

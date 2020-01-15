@@ -1,11 +1,11 @@
 resource "aws_kms_key" "parameter_store" {
-    description             = var.description
-    is_enabled              = var.is_enabled
-    deletion_window_in_days = var.deletion_window_in_days
-    enable_key_rotation     = var.enable_key_rotation
-    policy                  = var.policy
+  description             = var.description
+  is_enabled              = var.is_enabled
+  deletion_window_in_days = var.deletion_window_in_days
+  enable_key_rotation     = var.enable_key_rotation
+  policy                  = var.policy
 
-    tags = {
+  tags = {
     Name        = var.name
     Environment = var.environment
   }

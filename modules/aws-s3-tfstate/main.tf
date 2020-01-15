@@ -14,11 +14,11 @@ resource "aws_s3_bucket" "default" {
   policy        = var.policy
 
   versioning {
-    enabled    = true
+    enabled = true
   }
   tags = {
-      Name        = var.name
-      Environment = var.environment
+    Name        = var.name
+    Environment = var.environment
   }
 }
 
@@ -35,8 +35,8 @@ data "template_file" "terraform_backend_config" {
   template = file("${path.module}/templates/terraform.tf.tpl")
 
   vars = {
-    region = var.region
-    bucket = aws_s3_bucket.default.id
+    region               = var.region
+    bucket               = aws_s3_bucket.default.id
     terraform_version    = var.terraform_version
     terraform_state_file = var.terraform_state_file
   }

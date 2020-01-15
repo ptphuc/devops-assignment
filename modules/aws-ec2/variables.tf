@@ -119,17 +119,17 @@ variable "kms_keys" {
   description = "List of KMS keys can be used for decrypt SSM parameter, required if kms_decrypt = true"
 }
 variable "kms_decrypt" {
-  type = bool
+  type        = bool
   description = "Whether to allow EC2 to use KMS to decrypt"
-  default = false
+  default     = false
 }
 variable "ssm_access" {
-  type = bool
+  type        = bool
   description = "Whether to allow EC2 instance to access SSM "
-  default = false
+  default     = false
 }
 variable "ssm_paths" {
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
   description = "List of SSM path the EC2 has access to"
 }

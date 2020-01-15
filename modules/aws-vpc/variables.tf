@@ -15,7 +15,7 @@ variable "region" {
 
 variable "rds" {
   description = "Whether to create subnet group for RDS"
-  default = false
+  default     = false
 }
 variable "eip_for_nat_instance" {
   description = "Whether to attach EIP to Nat Instances"
@@ -27,23 +27,23 @@ variable "use_nat_instance" {
 }
 variable "nat_instance_type" {
   description = "EC2 Instance type used as Nat instance. i.e t2.micro,t3.nano"
-  default = "t2.micro"
+  default     = "t2.micro"
 }
 variable "availability_zones" {
   description = "VPC availability zones"
 }
 
 locals {
-  enable_nat_ec2            = var.use_nat_instance
-  enable_nat_gw             = var.use_nat_instance ? false : true
-  enable_rds                = var.rds
-  enable_eip_nat_instance   = var.eip_for_nat_instance
-#Count AZ
-  azs_count                 = length(var.availability_zones)
-  azs_count_ec2             = (local.enable_nat_ec2 ? 1 : 0)  * length(var.availability_zones)
-  eip_count_ec2             = (local.enable_eip_nat_instance ? 1 : 0) * local.azs_count_ec2
-  azs_count_gw              = (local.enable_nat_gw ? 1 : 0) * length(var.availability_zones)
-  azs_count_rds             = (local.enable_rds ? 1 : 0) * length(var.availability_zones)
+  enable_nat_ec2          = var.use_nat_instance
+  enable_nat_gw           = var.use_nat_instance ? false : true
+  enable_rds              = var.rds
+  enable_eip_nat_instance = var.eip_for_nat_instance
+  #Count AZ
+  azs_count     = length(var.availability_zones)
+  azs_count_ec2 = (local.enable_nat_ec2 ? 1 : 0) * length(var.availability_zones)
+  eip_count_ec2 = (local.enable_eip_nat_instance ? 1 : 0) * local.azs_count_ec2
+  azs_count_gw  = (local.enable_nat_gw ? 1 : 0) * length(var.availability_zones)
+  azs_count_rds = (local.enable_rds ? 1 : 0) * length(var.availability_zones)
 }
 
 variable "vpc_cidr_block" {

@@ -1,7 +1,7 @@
 resource "aws_subnet" "public_nat" {
-  count           = local.azs_count
-  cidr_block      = var.nat_cidr_blocks[count.index]
-  vpc_id          = aws_vpc.project.id
+  count             = local.azs_count
+  cidr_block        = var.nat_cidr_blocks[count.index]
+  vpc_id            = aws_vpc.project.id
   availability_zone = var.availability_zones[count.index]
 
   tags = {

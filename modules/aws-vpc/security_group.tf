@@ -14,7 +14,7 @@ resource "aws_security_group" "access_via_nat" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name        = "${var.name}.nat.instance.sg"
+    Name = "${var.name}.nat.instance.sg"
   }
 }
 

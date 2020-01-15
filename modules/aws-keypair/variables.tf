@@ -1,5 +1,5 @@
 variable "key_name" {
-  type = string
+  type        = string
   description = "Name of key pair"
 }
 variable "ssh_public_key_path" {

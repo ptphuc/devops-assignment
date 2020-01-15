@@ -16,10 +16,10 @@ resource "aws_db_instance" "default" {
   kms_key_id            = var.kms_key_arn
 
   vpc_security_group_ids = compact(
-  concat(
-  [join("", aws_security_group.default.*.id)],
-  var.associate_security_group_ids
-  )
+    concat(
+      [join("", aws_security_group.default.*.id)],
+      var.associate_security_group_ids
+    )
   )
 
   db_subnet_group_name        = join("", aws_db_subnet_group.default.*.name)
@@ -41,8 +41,8 @@ resource "aws_db_instance" "default" {
   deletion_protection         = var.deletion_protection
 
   tags = {
-    Name                = "${var.name}.${var.engine_version}.RDS"
-    Environment         = var.environment
+    Name        = "${var.name}.${var.engine_version}.RDS"
+    Environment = var.environment
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_db_parameter_group" "default" {
   count  = length(var.parameter_group_name) == 0 && var.enabled ? 1 : 0
   name   = "${var.name}-${var.engine}-grp"
   family = var.db_parameter_group
-  tags   = {
+  tags = {
     Name        = "${var.engine}.${var.engine_version}.parameter.grp"
     Environment = var.environment
   }
@@ -70,7 +70,7 @@ resource "aws_db_option_group" "default" {
   name                 = "${var.name}-${var.engine}-option-grp"
   engine_name          = var.engine
   major_engine_version = local.major_engine_version
-  tags   = {
+  tags = {
     Name        = "${var.engine}.${var.engine_version}.db.option.grp"
     Environment = var.environment
   }
@@ -103,7 +103,7 @@ resource "aws_db_subnet_group" "default" {
   count      = var.enabled ? 1 : 0
   name       = "${var.name}.sn.grp"
   subnet_ids = var.subnet_ids
-  tags       = {
+  tags = {
     Name        = var.name
     Environment = var.environment
   }
@@ -114,14 +114,14 @@ resource "aws_security_group" "default" {
   name        = "${var.name}.${var.engine_version}.rds.sg"
   description = "Allow inbound traffic from the security groups"
   vpc_id      = var.vpc_id
-  tags        = {
+  tags = {
     Name        = "${var.name}-${var.engine}-rds-sg"
     Environment = var.environment
   }
 }
 
 resource "aws_security_group_rule" "ingress_security_groups" {
-  count                    = var.enabled ? 1 : 0
+  count = var.enabled ? 1 : 0
   #count                    = var.enabled ? length(var.security_group_ids) : 0
   description              = "Allow inbound traffic from existing Security Groups"
   type                     = "ingress"
