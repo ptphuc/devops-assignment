@@ -12,11 +12,12 @@ Terraform Modules
 
 
 Sample web application
-Django Polls apps.
-Django version v1.11
-Pythong v2.7.15
-Posgresql hosted on AWS RDS 
-Django app deploy on AWS EC2-Instance with permission to connect to AWS RDS
+  Django Polls apps.
+Prerequisites:
+- Django version v1.11
+- Python v2.7.15
+- Posgresql hosted on AWS RDS 
+- Pip modules in requirement.txt
 
 CM tool for deploy app:
 Ansible v2.9.0
