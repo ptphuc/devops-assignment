@@ -1,0 +1,6 @@
+allow_ip: 54.179.167.239
+db_name: devops
+db_user: devops
+db_password: 2tTlPlhoF7nRerg3
+db_port: 5432
+db_host: postgres-rds.cy3gmdmd3crg.ap-southeast-1.rds.amazonaws.com

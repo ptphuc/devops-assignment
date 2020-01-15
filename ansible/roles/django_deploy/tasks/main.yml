@@ -1,0 +1,41 @@
+- name: Clone the source code from Git
+  git: 
+    repo: "{{ project_repo_url }}"
+    dest: /home/{{ remote_user }}/{{ project_name }}
+    force: yes
+
+- name: Install packages required by the Django app inside virtualenv
+  pip:
+    requirements: /home/{{ remote_user }}/{{ project_name }}/requirements.txt
+    virtualenv: /home/{{ remote_user }}/{{ project_name }}/venv
+
+- name: Generate settings.py for Django Project (equivalent to 0644)
+  template:
+    src: ./templates/settings.j2
+    dest: /home/{{ remote_user }}/{{ project_name }}/mysite/settings.py
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    force: yes
+
+- name: Apply DB migration for app
+  django_manage:
+      command: migrate
+      app_path: /home/{{ remote_user }}/{{ project_name }}/
+      virtualenv: /home/{{ remote_user }}/{{ project_name }}/venv
+
+- name: Create an initial superuser.
+  django_manage:
+      command: shell -c "from django.contrib.auth.hashers import make_password; from django.contrib.auth import get_user_model; MyUser = get_user_model(); MyUser.objects.filter( username__exact = '{{ admin_user }}' ).count() == 0 or exit(); new_super_user = MyUser( username = '{{ admin_user }}', email='{{ admin_email }}', is_superuser = True, is_staff = True ); new_super_user.password = make_password('{{ admin_pass }}'); new_super_user.save();"
+      app_path: /home/{{ remote_user }}/{{ project_name }}/
+      virtualenv: /home/{{ remote_user }}/{{ project_name }}/venv
+
+#This step make ansible hang to return final status
+# To run Django app: SSH to the instance, load virtualenv and run python manage.py runserver 0:8000 instead
+#- name: Run Django app
+#  django_manage:
+#      command: "runserver 0:8000"
+#      app_path: /home/{{ remote_user }}/{{ project_name }}/
+#      virtualenv: /home/{{ remote_user }}/{{ project_name }}/venv
+
+

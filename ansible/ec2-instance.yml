@@ -1,0 +1,17 @@
+- name: Provision a {{ application_name }} web application
+  hosts: tag_Name_devops_test_ec2
+  become: true
+  remote_user: "{{ remote_user }}"
+  vars_files:
+    - var/app_config.yml
+  vars:
+    application_name: Django
+    project_name : django-polls-app
+    project_repo_url: https://github.com/ptphuc/django-polls-app.git
+    remote_user: ec2-user
+    admin_user: admin5
+    admin_pass: admin@123
+    admin_email: admin@example.com
+  roles:
+    - base
+    - django_deploy
