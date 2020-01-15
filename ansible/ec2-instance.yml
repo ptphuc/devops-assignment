@@ -9,8 +9,8 @@
     project_name : django-polls-app
     project_repo_url: https://github.com/ptphuc/django-polls-app.git
     remote_user: ec2-user
-    admin_user: admin5
-    admin_pass: admin@123
+    admin_user: admin
+    admin_pass: qwerty@123
     admin_email: admin@example.com
   roles:
     - base
