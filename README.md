@@ -250,7 +250,7 @@ Then, we copy generated terraform.tf and put on main directory to use
 
   The website will return result as picture below:
 
-  ![Expected 404 ERROR. Django app has redirected to custom 404 page !](images/404_Error.jpg)
+  ![Expected 404 ERROR. Django app has redirected to custom 404 page !](https://github.com/ptphuc/devops-assignment/blob/development/images/404_Error.JPG?raw=true)
 
 
   It's normal result as expected as  Django is not running at production mode with Web Server like Apache or Nginx stand in front.
@@ -259,19 +259,19 @@ Continue to access link below to use the admin view of Django Polls App. The adm
   
     http://<public_ip_of_ec2_instance>:8000/admin
 
-![Admin view page of  Django app!](images/admin_login.jpg )
+![Admin view page of  Django app!](https://github.com/ptphuc/devops-assignment/blob/development/images/admin_login.JPG?raw=true)
 
 In this view, we can:
 - create user for admin site
 - create question poll and choice
 - modify question, search, filter by date and published status:
 
-![Admin view page of  Django app!](images/admin_interface.jpg)
+![Admin view page of  Django app!](https://github.com/ptphuc/devops-assignment/blob/development/images/admin_interface.JPG?raw=true)
 
 
-![Admin view page of  Django app!](/images/polls_interface.jpg)
+![Admin view page of  Django app!](https://github.com/ptphuc/devops-assignment/blob/development/images/polls_interface.JPG?raw=true)
 
-![Questions/Polls view page of  Django app!](images/question_interface.jpg)
+![Questions/Polls view page of  Django app!](https://github.com/ptphuc/devops-assignment/blob/development/images/question_interface.JPG?raw=true)
 
 Also, We can try to vote for the polls and see real counting vote in real time by accessing this link:
     
