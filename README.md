@@ -122,6 +122,14 @@ Configuration to use ansible-dynamic-inventory scripts:
 
 ### STEPS TO CREATE A DEMO ENViRONMENT WITH DJANGO APP RUNNING:
 
+**Optional**: This demo uses standalone TF modules ``AWS-s3-tfstate`` at first to a s3 bucket to store tfstate of TF-as backend config
+
+Running AWS-s3-tfstate with AWS credentials provided to:
+
+- Create an S3 bucket with **Versioning** Enabled (Recommended)
+- Generate terraform.tf file as backend config for TF 
+
+Then, we copy generated terraform.tf and put on main directory to use
 ### 1. Provisioning infrastructure with Terraform
   #### Provide AWS credentials
   - Easiest way is to export export **AWS_ACCESS_KEY_ID** and **AWS_SECRET_ACCESS_KEY** as Environment Variable in the terminal before running Terraform command:
